@@ -1,0 +1,29 @@
+# .dockerignore — PPP (Piracy Prevention Prototype)
+# Place this file at the REPO ROOT, next to the Dockerfile.
+# Keeps the build context small and avoids leaking local/secret files.
+
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+
+.git
+.gitignore
+
+.env
+.env.local
+
+tracking/ml/model.pkl
+tracking/ml/demo_data.db
+
+.pytest_cache
+.mypy_cache
+*.egg-info
+
+node_modules
+dist
+build
+
+.vscode
+.idea

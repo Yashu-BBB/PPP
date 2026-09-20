@@ -80,3 +80,20 @@ class TrackingConfig:
     # A brand-new track (no history yet) starts in CANDIDATE state with
     # this confidence, then confidence updates take over immediately.
     initial_confidence: float = 20.0
+
+    # ------------------------------------------------------------------
+    # Optional ML-based confidence (tracking/ml/)
+    # ------------------------------------------------------------------
+    # When True, confidence.py tries the trained ML model
+    # (tracking/ml/model.pkl) first and blends it with the hand-tuned
+    # formula below. When False (default), or when no trained model
+    # exists yet, only the hand-tuned formula is used - nothing about
+    # existing behaviour changes unless you opt in.
+    use_ml_confidence: bool = False
+
+    # Path to the trained model produced by `tracking/ml/train_model.py`.
+    ml_model_path: str = ""  # "" -> ml_confidence module's own default path
+
+    # How much weight the ML score gets vs. the hand-tuned formula
+    # when both are available. 1.0 = ML score only, 0.0 = formula only.
+    ml_confidence_weight: float = 0.6

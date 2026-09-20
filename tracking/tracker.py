@@ -142,6 +142,10 @@ class MultiObjectTracker:
         )
         track.reflection_history.append(candidate.reflection_score)
         track.position_history.append((candidate.center_x, candidate.center_y))
+        track.brightness_history.append(candidate.brightness)
+        track.shape_score_history.append(candidate.shape_score)
+        track.detector_confidence_history.append(candidate.confidence)
+        track.frames_observed_count = 1
         self.tracks[track_id] = track
         # first sample still runs through the confidence model so a
         # very strong first detection isn't stuck at initial_confidence
@@ -165,6 +169,13 @@ class MultiObjectTracker:
         track.reflection_history = track.reflection_history[-10:]
         track.position_history.append((candidate.center_x, candidate.center_y))
         track.position_history = track.position_history[-10:]
+        track.brightness_history.append(candidate.brightness)
+        track.brightness_history = track.brightness_history[-10:]
+        track.shape_score_history.append(candidate.shape_score)
+        track.shape_score_history = track.shape_score_history[-10:]
+        track.detector_confidence_history.append(candidate.confidence)
+        track.detector_confidence_history = track.detector_confidence_history[-10:]
+        track.frames_observed_count += 1
 
         track.confidence = update_confidence(track, candidate, self.config)
         track.last_seen_timestamp = timestamp

@@ -284,7 +284,16 @@ Notes for the integrator:
 
 ---
 
-## 11. Do not change without documenting it
+## 11. Optional: ML-based confidence
+
+`tracking/ml/` adds an optional trained-classifier layer on top of the
+formula-based confidence above, backed by Supabase for storing labeled
+training examples. It's entirely opt-in — nothing here requires it,
+and if it isn't set up, behavior is unchanged. See
+`tracking/ml/README.md` for setup and `config.use_ml_confidence` to
+enable it.
+
+## 12. Do not change without documenting it
 
 The INPUT CONTRACT (candidates) and OUTPUT CONTRACT (tracks/events)
 this module relies on are defined in `docs/api.md` at the repo root.

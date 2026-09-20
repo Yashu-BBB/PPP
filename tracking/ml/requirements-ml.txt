@@ -1,0 +1,14 @@
+# tracking/ml/requirements-ml.txt
+#
+# Install with:
+#   pip install -r tracking/ml/requirements-ml.txt --break-system-packages
+#
+# These are ONLY needed if you're using the optional ML confidence
+# feature (tracking/ml/). The core tracking/ module (tracker.py,
+# confidence.py, etc.) has none of these as hard dependencies.
+
+supabase>=2.0.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+joblib>=1.3.0
+python-dotenv>=1.0.0

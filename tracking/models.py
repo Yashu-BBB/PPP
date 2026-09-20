@@ -79,6 +79,17 @@ class Track:
     total_seen_seconds: float = 0.0
     reflection_history: list = field(default_factory=list)
     position_history: list = field(default_factory=list)
+    # Additional per-frame histories, kept only for the optional ML
+    # confidence path (tracking/ml/) - the core formula-based
+    # confidence model doesn't need these, but a trained classifier
+    # benefits from the full feature set.
+    brightness_history: list = field(default_factory=list)
+    shape_score_history: list = field(default_factory=list)
+    detector_confidence_history: list = field(default_factory=list)
+    # True total frame count this track has been matched to a
+    # candidate (histories above are capped/windowed for memory; this
+    # counter isn't, so ML's num_frames_observed feature stays accurate).
+    frames_observed_count: int = 0
 
     def to_output(self) -> dict:
         return {
